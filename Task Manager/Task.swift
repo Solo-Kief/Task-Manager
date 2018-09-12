@@ -7,13 +7,24 @@
 import Foundation
 
 class Task {
-    var Name: String
-    var Description: String
-    var Status: Bool
+    var name: String
+    var description: String
+    var status: Bool
     var finishDate: Date
+    var priority: Priority
+    
+    enum Priority {
+        case Low
+        case Normal
+        case High
+    }
     
     init(Name: String, Description: String, timeToComplete finishBy: String) {
-        <#statements#>
+        self.name = Name
+        self.description = Description
+        self.status = false
+        self.finishDate = Date().addingTimeInterval(604800) //Finish by one week from now.
+        self.priority = .Normal
     }
 
 }
