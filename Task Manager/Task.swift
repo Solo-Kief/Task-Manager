@@ -37,7 +37,7 @@ class Task {
         self.name = Name
         self.description = Description
         self.status = .Incomplete
-        self.finishDate = Date() //Needs to set to user given date.
+        self.finishDate = timeToComplete
         self.priority = .Normal
     }
     
@@ -66,7 +66,9 @@ class Task {
     }
     
     func print() {
-        Swift.print("Task Name: \(name)\nPriortiy: \(priority)\n Finish By: \(finishDate)\n Description: \(description)")
+        let format = DateFormatter(); format.dateFormat = "MM/dd/yyyy"
+        
+        Swift.print("Task Name: \(name)\nStatus: \(status)\nPriority: \(priority)\nFinish By: \(format.string(from: finishDate))\nDescription: \(description)")
     }
 
     /*
