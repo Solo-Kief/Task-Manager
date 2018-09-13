@@ -10,6 +10,9 @@
  Final:
  - Impliment a persistance system. (Hard)
  - Would be implimented as an import task function inside the task class. May return array of tasks?
+ 
+ - importTasks(File: "file.name") ~Import tasks from file for persistance.
+ - exportTasks(Tasks: [Task], File: "file.name") ~Export tasks to a file for persistance.
  */
 
 
@@ -70,11 +73,12 @@ class Task {
         
         Swift.print("Task Name: \(name)\nStatus: \(status)\nPriority: \(priority)\nFinish By: \(format.string(from: finishDate))\nDescription: \(description)")
     }
-
-    /*
-     To-Do List:
-     - importTasks(File: "file.name") ~Import tasks from file for persistance.
-     - exportTakss(Tasks: [Task], File: "file.name") ~Export tasks to a file for persistance.
-    */
-
+    
+    func save(tasks: [Task]) {
+        Swift.print("Not implemented.")
+    }
+    
+    func load() {
+        Swift.print("Not implemented.")
+    }
 }

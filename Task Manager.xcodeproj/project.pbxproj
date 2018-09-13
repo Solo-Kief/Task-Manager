@@ -29,6 +29,7 @@
 		C65AE249214962950044B2C0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C65AE250214962BC0044B2C0 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C65AE2522149684A0044B2C0 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		C65AE254214AE8BF0044B2C0 /* storedTasks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = storedTasks.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 		C65AE248214962950044B2C0 /* Task Manager */ = {
 			isa = PBXGroup;
 			children = (
+				C65AE254214AE8BF0044B2C0 /* storedTasks.txt */,
 				C65AE249214962950044B2C0 /* main.swift */,
 				C65AE250214962BC0044B2C0 /* Task.swift */,
 				C65AE2522149684A0044B2C0 /* Menu.swift */,
