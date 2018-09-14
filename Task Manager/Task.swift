@@ -3,45 +3,68 @@
 //
 //  Created by Solomon Kieffer on 9/12/18.
 //  Copyright © 2018 Phoenix Development. All rights reserved.
-
-/*
- To-Do List:
- 
- Final:
- - Impliment a persistance system. (Hard)
- - Would be implimented as an import task function inside the task class. May return array of tasks?
- 
- - importTasks(File: "file.name") ~Import tasks from file for persistance.
- - exportTasks(Tasks: [Task], File: "file.name") ~Export tasks to a file for persistance.
- */
-
+//
+//  Persistance Code by Jacob Finn.
 
 import Foundation
 
-class Task {
+class Task: NSObject, NSCoding {
     internal var name: String
-    internal var description: String
+    internal var Tdescription: String
     internal var status: Status
     internal var finishDate: Date
     internal var priority: Priority
     
-    enum Status{
-        case Incomplete
-        case Complete
+    enum Status: Int, Codable {
+        case Incomplete = 0
+        case Complete = 1
     }
     
-    enum Priority {
-        case Low
-        case Normal
-        case High
+    enum Priority: Int, Codable {
+        case Low = 0
+        case Normal = 1
+        case High = 2
     }
     
-    init(Name: String, Description: String, finishBy timeToComplete: Date) {
+    func encode(with aCoder: NSCoder) { //Used to encode a Task object to be saved.
+        aCoder.encode(self.name , forKey: "name")
+        aCoder.encode(self.Tdescription, forKey: "description")
+        aCoder.encode(self.status.rawValue, forKey: "status")
+        aCoder.encode(self.finishDate, forKey: "finishDate")
+        aCoder.encode(self.priority.rawValue, forKey: "priority")
+    }
+    
+    override init() { //Initialize Empty Task. For internal use only.
+        self.name = ""
+        self.Tdescription = ""
+        self.status = .Incomplete
+        self.finishDate = Date()
+        self.priority = .Low
+    }
+    
+    init(Name: String, Description: String, finishBy timeToComplete: Date) { //Normal Initializer
         self.name = Name
-        self.description = Description
+        self.Tdescription = Description
         self.status = .Incomplete
         self.finishDate = timeToComplete
         self.priority = .Normal
+    }
+    
+    init(name: String, description: String, priorityRawValue: Int, finishDate: Date?, statusRawValue: Int) { //Initializer used for loading a saved task.
+        self.name = name
+        self.Tdescription = description
+        self.status = Status(rawValue: statusRawValue)!
+        self.priority = Priority(rawValue: priorityRawValue)!
+        self.finishDate = finishDate!
+    }
+    
+    convenience required init?(coder aDecoder: NSCoder) { //Used to decode and initialize a saved task.
+        let name = aDecoder.decodeObject(forKey: "name") as! String
+        let description = aDecoder.decodeObject(forKey: "description") as! String
+        let status = aDecoder.decodeInteger(forKey: "status")
+        let finishDate = aDecoder.decodeObject(forKey: "finishDate") as! Date?
+        let priority = aDecoder.decodeInteger(forKey: "priority")
+        self.init(name: name, description: description, priorityRawValue: priority, finishDate: finishDate, statusRawValue: status)
     }
     
     func changeStatus() {
@@ -61,7 +84,7 @@ class Task {
     }
     
     func changeDescription(to description: String) {
-        self.description = description
+        self.Tdescription = description
     }
     
     func changeFinishDate(to finishDate: Date) {
@@ -71,14 +94,17 @@ class Task {
     func print() {
         let format = DateFormatter(); format.dateFormat = "MM/dd/yyyy"
         
-        Swift.print("Task Name: \(name)\nStatus: \(status)\nPriority: \(priority)\nFinish By: \(format.string(from: finishDate))\nDescription: \(description)")
+        Swift.print("Task Name: \(name)\nStatus: \(status)\nPriority: \(priority)\nFinish By: \(format.string(from: finishDate))\nDescription: \(Tdescription)")
     }
     
-    func save(tasks: [Task]) {
-        Swift.print("Not implemented.")
+    func save(tasks: [Task]) { //Credit for save/load code to Jacob Finn.
+        let storedTasks = NSKeyedArchiver.archivedData(withRootObject: tasks)
+        UserDefaults.standard.set(storedTasks, forKey: "storedTasks")
     }
     
-    func load() {
-        Swift.print("Not implemented.")
+    func load() -> [Task] { //Code appears to use some form of built in OS User by User storage location.
+        let storedTasks = UserDefaults.standard.value(forKey: "storedTasks")
+        let taskArray = NSKeyedUnarchiver.unarchiveObject(with: storedTasks as! Data)
+        return taskArray as! [Task]
     }
 }

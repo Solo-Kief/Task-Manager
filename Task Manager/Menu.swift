@@ -40,7 +40,8 @@ class Menu {
         3. Change Task Complete-By Date
         4. Change Task Priority
         5. Toggle Task Complete / Incompete
-        6. Cancle
+        6. Delete Task
+        7. Cancle
 
         """)
         
@@ -106,9 +107,9 @@ class Menu {
         case 5:
             displayTaskEditorMenu()
         case 6:
-            print("\nFunction Not Avaliable.")
+            Task().save(tasks: taskList)
         case 7:
-            print("\nFunction Not Avaliable.")
+            taskList = Task().load()
         case 8:
             return //Boots out of this function, resulting in completion of the original file.
         default:
@@ -158,6 +159,8 @@ class Menu {
             taskList[Index].changeStatus()
             print("\nThe task \(taskList[Index].name) has been marked as \(taskList[Index].status).")
         case 6:
+            taskList.remove(at: Index)
+        case 7:
             displayMainMenu()
         default:
             print("\nInvalid Input\n")
