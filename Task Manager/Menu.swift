@@ -33,6 +33,11 @@ class Menu {
     }
     
     func displayTaskEditorMenu() {
+        guard taskList.count > 0 else {
+            print("This function is temporarily unavaliable because no tasks have been made.")
+            return displayMainMenu()
+        }
+        
         print("""
 
         1. Change Task Name
@@ -54,6 +59,7 @@ class Menu {
         var taskIndex = -1
         print("Enter the name of the task you want to edit...")
         let name = readLine()!
+        
         for i in 0...taskList.count - 1 {
             if name.lowercased() == taskList[i].name.lowercased() {
                 taskIndex = i
@@ -95,13 +101,17 @@ class Menu {
         case 3:
             for task in taskList {
                 if task.status == .Incomplete {
+                    print("")
                     task.print()
+                    print("")
                 }
             }
         case 4:
             for task in taskList {
                 if task.status == .Complete {
+                    print("")
                     task.print()
+                    print("")
                 }
             }
         case 5:
