@@ -17,8 +17,8 @@ class Menu {
         3. List Incomplete Tasks
         4. List Completed Tasks
         5. Edit Task
-        6. Save (Not Implemented)
-        7. Load (Not Implemented)
+        6. Save
+        7. Load
         8. Quit
 
         """)
