@@ -106,12 +106,7 @@ class Menu {
         case 5:
             displayTaskEditorMenu()
         case 6:
-            guard taskList.count >= 1 else {
-                print("The task list is empty.")
-                return displayMainMenu()
-            }
-            taskList[0].save(tasks: taskList)
-            print("Save Complete.")
+            print("\nFunction Not Avaliable.")
         case 7:
             print("\nFunction Not Avaliable.")
         case 8:
