@@ -32,7 +32,7 @@ class Menu {
         primaryInputHandler(Input: input)
     }
     
-    func displayTaskEditorMenu() {
+    private func displayTaskEditorMenu() {
         guard taskList.count > 0 else {
             print("This function is temporarily unavaliable because no tasks have been made.")
             return displayMainMenu()
@@ -74,7 +74,7 @@ class Menu {
         secondaryInputHandler(Input: input, Index: taskIndex)
     }
     
-    func primaryInputHandler(Input: Int) {
+    private func primaryInputHandler(Input: Int) {
         switch Input {
         case 1:
             print("\nWhat would you like to name your task?")
@@ -129,7 +129,7 @@ class Menu {
         displayMainMenu()
     }
     
-    func secondaryInputHandler(Input: Int, Index: Int) {
+    private func secondaryInputHandler(Input: Int, Index: Int) {
         switch Input {
         case 1:
             print("\nWhat do you want to change the name to?")
