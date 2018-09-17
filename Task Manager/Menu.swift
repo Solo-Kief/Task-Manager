@@ -7,9 +7,18 @@
 import Foundation
 
 var taskList = [Task]()
+var verified = false
 
 class Menu {
     func displayMainMenu() {
+        if !verified {
+            if Password.verify() {
+                verified = true
+            } else {
+                return print("The given password was not valid. The session will now terminate.")
+            }
+        }
+        
         print("""
 
         1. Make A New Task
@@ -19,7 +28,8 @@ class Menu {
         5. Edit Task
         6. Save
         7. Load
-        8. Quit
+        8. Edit Password
+        9. Quit (May Need to Press Twice)
 
         """)
         
@@ -121,6 +131,8 @@ class Menu {
         case 7:
             taskList = Task().load()
         case 8:
+            Password.userSave()
+        case 9:
             return //Boots out of this function, resulting in completion of the original file.
         default:
             print("\nInvalid Input\n")
@@ -177,5 +189,10 @@ class Menu {
             sleep(1)
         }
         displayMainMenu()
+    }
+    
+    func applyPassword() {
+        print("Set your new password.")
+        let password = readLine()
     }
 }

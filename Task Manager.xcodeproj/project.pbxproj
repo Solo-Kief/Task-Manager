@@ -10,6 +10,7 @@
 		C65AE24A214962950044B2C0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AE249214962950044B2C0 /* main.swift */; };
 		C65AE251214962BC0044B2C0 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AE250214962BC0044B2C0 /* Task.swift */; };
 		C65AE2532149684A0044B2C0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AE2522149684A0044B2C0 /* Menu.swift */; };
+		C65AE28D215004AD0044B2C0 /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65AE28C215004AD0044B2C0 /* Password.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		C65AE249214962950044B2C0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C65AE250214962BC0044B2C0 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C65AE2522149684A0044B2C0 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		C65AE28C215004AD0044B2C0 /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				C65AE249214962950044B2C0 /* main.swift */,
 				C65AE250214962BC0044B2C0 /* Task.swift */,
 				C65AE2522149684A0044B2C0 /* Menu.swift */,
+				C65AE28C215004AD0044B2C0 /* Password.swift */,
 			);
 			path = "Task Manager";
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65AE28D215004AD0044B2C0 /* Password.swift in Sources */,
 				C65AE2532149684A0044B2C0 /* Menu.swift in Sources */,
 				C65AE251214962BC0044B2C0 /* Task.swift in Sources */,
 				C65AE24A214962950044B2C0 /* main.swift in Sources */,
