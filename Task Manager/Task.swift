@@ -15,12 +15,12 @@ class Task: NSObject, NSCoding {
     internal var finishDate: Date
     internal var priority: Priority
     
-    enum Status: Int, Codable {
+    internal enum Status: Int, Codable {
         case Incomplete = 0
         case Complete = 1
     }
     
-    enum Priority: Int, Codable {
+    internal enum Priority: Int, Codable {
         case Low = 0
         case Normal = 1
         case High = 2
