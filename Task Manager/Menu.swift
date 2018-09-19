@@ -9,7 +9,7 @@ import Foundation
 var taskList = [Task]()
 var verified = false
 
-class Menu {
+class Menu { //Most of this code is self explanatory.
     func displayMainMenu() {
         if !verified {
             if Password.verify() {
@@ -43,7 +43,7 @@ class Menu {
     }
     
     private func displayTaskEditorMenu() {
-        guard taskList.count > 0 else {
+        guard taskList.count > 0 else { //Won't show this menu if no tasks have been made,
             print("This function is temporarily unavaliable because no tasks have been made.")
             return displayMainMenu()
         }
@@ -70,7 +70,7 @@ class Menu {
         print("Enter the name of the task you want to edit...")
         let name = readLine()!
         
-        for i in 0...taskList.count - 1 {
+        for i in 0...taskList.count - 1 { //Finds a task by name.
             if name.lowercased() == taskList[i].name.lowercased() {
                 taskIndex = i
             }
@@ -84,7 +84,7 @@ class Menu {
         secondaryInputHandler(Input: input, Index: taskIndex)
     }
     
-    private func primaryInputHandler(Input: Int) {
+    private func primaryInputHandler(Input: Int) { //Handles the input for the main menu.
         switch Input {
         case 1:
             print("\nWhat would you like to name your task?")
@@ -127,9 +127,9 @@ class Menu {
         case 5:
             displayTaskEditorMenu()
         case 6:
-            Task().save(tasks: taskList)
+            Task.save(tasks: taskList)
         case 7:
-            taskList = Task().load()
+            taskList = Task.load()
         case 8:
             Password.userSave()
         case 9:
@@ -146,20 +146,21 @@ class Menu {
         case 1:
             print("\nWhat do you want to change the name to?")
             let newName = readLine()!
+            print("\nThe task \"\(taskList[Index].name)\" has been renamed as \"\(newName)\"")
             taskList[Index].changeName(to: newName)
         case 2:
             print("\nPlease type a new task description...")
             let newDescription = readLine()!
             taskList[Index].changeDescription(to: newDescription)
+            print("\nThe task \"\(taskList[Index].name)\" has been updated.")
         case 3:
             let format = DateFormatter(); format.dateFormat = "MM/dd/yyyy"
-            
             guard let newDate = format.date(from: readLine()!) else {
                 print("\nAn improper date was given.")
                 return displayMainMenu()
             }
-            
             taskList[Index].changeFinishDate(to: newDate)
+            print("\nThe task \"\(taskList[Index].name)\" has been marked for completion on \(taskList[Index].finishDate).")
         case 4:
             print("\nWhat do you want to set the new priority to? (0 - LOW || 1 - Normal || 2 - High)")
             guard let newPriority = Int(readLine()!) else {
@@ -177,10 +178,12 @@ class Menu {
                 print("\nAn improper priority value was given.\n")
                 displayMainMenu()
             }
+            print("\nThe task \"\(taskList[Index].name)\" has been marked as \(taskList[Index].priority) priority.")
         case 5:
             taskList[Index].changeStatus()
-            print("\nThe task \(taskList[Index].name) has been marked as \(taskList[Index].status).")
+            print("\nThe task \"\(taskList[Index].name)\" has been marked as \(taskList[Index].status).")
         case 6:
+            print("\nThe task \(taskList[Index].name) has been marked as \(taskList[Index].status).")
             taskList.remove(at: Index)
         case 7:
             displayMainMenu()
@@ -189,10 +192,5 @@ class Menu {
             sleep(1)
         }
         displayMainMenu()
-    }
-    
-    func applyPassword() {
-        print("Set your new password.")
-        let password = readLine()
     }
 }

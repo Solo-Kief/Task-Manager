@@ -34,14 +34,6 @@ class Task: NSObject, NSCoding {
         aCoder.encode(self.priority.rawValue, forKey: "priority")
     }
     
-    override init() { //Initialize Empty Task. For internal use only.
-        self.name = ""
-        self.Tdescription = ""
-        self.status = .Incomplete
-        self.finishDate = Date()
-        self.priority = .Low
-    }
-    
     init(Name: String, Description: String, finishBy timeToComplete: Date) { //Normal Initializer
         self.name = Name
         self.Tdescription = Description
@@ -97,12 +89,12 @@ class Task: NSObject, NSCoding {
         Swift.print("Task Name: \(name)\nStatus: \(status)\nPriority: \(priority)\nFinish By: \(format.string(from: finishDate))\nDescription: \(Tdescription)")
     }
     
-    func save(tasks: [Task]) { //Credit for save/load code to Jacob Finn.
+    static func save(tasks: [Task]) { //Credit for save/load code to Jacob Finn.
         let storedTasks = NSKeyedArchiver.archivedData(withRootObject: tasks)
         UserDefaults.standard.set(storedTasks, forKey: "storedTasks")
     }
     
-    func load() -> [Task] { //Code appears to use some form of built in OS User by User storage location.
+    static func load() -> [Task] { //Code appears to use some form of built in OS User by User storage location.
         let storedTasks = UserDefaults.standard.value(forKey: "storedTasks")
         let taskArray = NSKeyedUnarchiver.unarchiveObject(with: storedTasks as! Data)
         return taskArray as! [Task]
