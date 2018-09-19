@@ -29,7 +29,7 @@ class Menu { //Most of this code is self explanatory.
         6. Save
         7. Load
         8. Edit Password
-        9. Quit (May Need to Press Twice)
+        9. Quit
 
         """)
         
@@ -133,7 +133,8 @@ class Menu { //Most of this code is self explanatory.
         case 8:
             Password.userSave()
         case 9:
-            return //Boots out of this function, resulting in completion of the original file.
+            print("\nThank you for using the Task Manager.")
+            exit(0)
         default:
             print("\nInvalid Input\n")
             sleep(1)

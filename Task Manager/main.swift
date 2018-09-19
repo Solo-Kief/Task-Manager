@@ -6,4 +6,3 @@
 
 
 Menu().displayMainMenu()
-print("Thank you for using the Task Manager.")
